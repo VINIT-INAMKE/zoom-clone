@@ -9,5 +9,5 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     </main>
   );
 };
-
+ 
 export default RootLayout;

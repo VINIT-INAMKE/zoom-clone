@@ -23,6 +23,7 @@ import Loader from "./Loader";
 import EndCallButton from "./EndCallButton";
 import { cn } from "@/lib/utils";
 
+
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
@@ -33,7 +34,6 @@ const MeetingRoom = () => {
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState } = useCallStateHooks();
 
-  // for more detail about types of CallingState see: https://getstream.io/video/docs/react/ui-cookbook/ringing-call/#incoming-call-panel
   const callingState = useCallCallingState();
 
   if (callingState !== CallingState.JOINED) return <Loader />;
@@ -63,7 +63,7 @@ const MeetingRoom = () => {
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
-      {/* video layout and call controls */}
+
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5">
         <CallControls onLeave={() => router.push(`/`)} />
 
@@ -95,7 +95,7 @@ const MeetingRoom = () => {
             <Users size={20} className="text-white" />
           </div>
         </button>
-        {!isPersonalRoom && <EndCallButton />}
+               {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>
   );
