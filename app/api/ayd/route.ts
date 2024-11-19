@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { currentUser } from '@clerk/nextjs/server'
 export const revalidate = 0;
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
-
+  const user = await currentUser()
   const { url } = await fetch("https://www.askyourdatabase.com/api/chatbot/v2/session", {
     method: "POST",
     headers: {
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({
       "chatbotid": process.env.AYD_CHATBOT_ID,
-      "name": "Sheldon",
-      "email": "test@gmail.com"
+      "name": user?.username,
+      "email": user?.primaryEmailAddressId,
     }),
   }).then((res) => res.json());
 
